@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Chrome Dinosaur Game</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div id="game-container"></div>
+    
+    <div id="ui-container">
+        <div id="score">Score: 0</div>
+        <div id="high-score">High Score: 0</div>
+        <div id="game-over-screen" class="hidden">
+            <div class="game-over-content">
+                <h1>GAME OVER</h1>
+                <p id="final-score">Score: 0</p>
+                <p class="instructions">Press SPACE to restart</p>
+            </div>
+        </div>
+        <div id="instructions">
+            <p>SPACE or UP ARROW: Jump | DOWN ARROW: Duck</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="src/dinosaur.js"></script>
+    <script src="src/obstacles.js"></script>
+    <script src="src/camera.js"></script>
+    <script src="src/physics.js"></script>
+    <script src="src/ui.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
