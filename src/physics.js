@@ -38,26 +38,25 @@ class PhysicsManager {
     }
     
     checkCollision(dinosaur, obstacle) {
-        // Get bounding boxes
-        const dBox = this.getBoundingBox(dinosaur);
-        const oBox = this.getBoundingBox(obstacle.mesh);
+        // Simple distance-based collision detection
+        const dPos = dinosaur.getMesh().position;
+        const oPos = obstacle.mesh.position;
         
-        // AABB collision detection
-        return !(dBox.max.x < oBox.min.x || 
-                 dBox.min.x > oBox.max.x || 
-                 dBox.max.y < oBox.min.y || 
-                 dBox.min.y > oBox.max.y);
-    }
-    
-    getBoundingBox(object) {
-        const geometry = object.geometry;
-        geometry.computeBoundingBox();
+        // Adjust collision box based on dinosaur state
+        const dWidth = 2;
+        const dHeight = dinosaur.isDucking ? 1.2 : 2;
+        const dX = dPos.x;
+        const dY = dPos.y;
         
-        const box = {
-            min: object.position.clone().add(geometry.boundingBox.min),
-            max: object.position.clone().add(geometry.boundingBox.max)
-        };
+        const oWidth = obstacle.type === 'cactus' ? 0.8 : 2;
+        const oHeight = obstacle.type === 'cactus' ? 2 : 1.6;
+        const oX = oPos.x;
+        const oY = oPos.y;
         
-        return box;
+        // AABB collision
+        return !(dX + dWidth < oX - oWidth || 
+                 dX - dWidth > oX + oWidth || 
+                 dY + dHeight < oY - oHeight || 
+                 dY - dHeight > oY + oHeight);
     }
 }
